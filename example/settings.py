@@ -3,6 +3,8 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DATABASE_ENGINE = 'sqlite3'
+
 ROOT_URLCONF = 'example.urls'
 
 TEMPLATE_DIRS = (
