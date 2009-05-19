@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 ROOT_URLCONF = 'example.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates'),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates')),
 )
 
 INSTALLED_APPS = (
