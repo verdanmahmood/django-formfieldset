@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+    padding-bottom: 60px;
+}
+
+h2 {
+    margin: 24px 0 4px 0;
+}
+
+th {
+    text-align: left;
+}
+
+pre  {
+    background: #fee;
+    padding: 12px 8px;
+    margin: 0;
+    width: 784px;
+}
+
+form h2 {
+    color: #859;
+}
+
+form table {
+    background: #edf;
+    width: 800px;
+}
+
+form table, form table th, form table td {
+    border: 1px solid #859;
+    border-collapse: collapse;
+}
