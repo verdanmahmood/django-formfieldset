@@ -134,7 +134,7 @@ class FieldsetMixin(object):
             else:
                 description = u''
             output.append(fieldset_row % {
-                                    'name': fieldset.name,
+                                    'name': fieldset.name or u'',
                                     'description': description,
                                     'fields': u'\n'.join(fieldset_output)})
         if top_errors:
