@@ -157,8 +157,9 @@ class FieldsetMixin(object):
         "Returns this form's fieldsets rendered as HTML <tr>s -- " \
         "excluding the <table></table>."
         return self._html_fieldset_output(
-            u'<tr><th colspan="2"><h2>%(title)s</h2>%(description)s</th></tr>%(fields)s',
-            u'%s',
+            u'<tr><th colspan="2">%(title)s%(description)s</th></tr>' \
+                                                                 '%(fields)s',
+            u'<h2>%s</h2>',
             u'%s',
             u'<tr><th>%(label)s</th><td>%(errors)s%(field)s%(help_text)s' \
                                                                 u'</td></tr>',
@@ -171,9 +172,8 @@ class FieldsetMixin(object):
         "Returns this form's fieldsets rendered as HTML <li>s -- " \
         "excluding the <ul></ul>."
         return self._html_fieldset_output(
-            u'<li>\n<h2>%(title)s</h2>%(description)s\n<ul>\n%(fields)s\n'\
-                                                              u'</ul>\n</li>',
-            u'%s',
+            u'<li>%(title)s%(description)s<ul>%(fields)s</ul></li>',
+            u'<h2>%s</h2>',
             u'%s',
             u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
             u'<li>%s</li>',
@@ -184,8 +184,8 @@ class FieldsetMixin(object):
     def as_fieldset_p(self):
         "Returns this form's fieldsets rendered as HTML <p>s."
         return self._html_fieldset_output(
-            u'<div>\n<h2>%(title)s</h2>%(description)s\n%(fields)s\n</div>',
-            u'%s',
+            u'<div>%(title)s%(description)s%(fields)s</div>',
+            u'<h2>%s</h2>',
             u'%s',
             u'<p>%(label)s %(field)s%(help_text)s</p>',
             u'%s',
