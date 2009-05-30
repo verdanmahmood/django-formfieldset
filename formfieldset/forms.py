@@ -177,7 +177,7 @@ class FieldsetMixin(object):
             u'%s',
             u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
             u'<li>%s</li>',
-            '</li></ul></li>',
+            u'</li>',
             u' %s',
             False)
 
@@ -189,6 +189,6 @@ class FieldsetMixin(object):
             u'%s',
             u'<p>%(label)s %(field)s%(help_text)s</p>',
             u'%s',
-            u'</p></div>',
+            u'</p>',
             u' %s',
             True)
