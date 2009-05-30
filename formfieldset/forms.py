@@ -7,10 +7,10 @@ from django.utils.encoding import force_unicode
 class Fieldset(object):
     "Simple iterable for holding fieldset information."
 
-    def __init__(self, form, name=None, fields=(),
+    def __init__(self, form, title=None, fields=(),
                  description=None, extra_content={}):
         self.form = form
-        self.name = name
+        self.title = title
         self.fields = fields
         self.description = description
         self.extra_content = extra_content
@@ -90,8 +90,8 @@ class Fieldset(object):
             description = self.description
         return mark_safe(
             u'<tr><th colspan="2">'
-            u'<h2>%(name)s</h2>%(description)s</th></tr>%(fields)s'
-                    % {'name': self.name,
+            u'<h2>%(title)s</h2>%(description)s</th></tr>%(fields)s'
+                    % {'title': self.title,
                        'description': description,
                        'fields': u'\n'.join(fields),
                       })
@@ -100,8 +100,8 @@ class Fieldset(object):
 class FieldsetMixin(object):
     def iter_fieldsets(self):
         "Iterates fieldsets."
-        for name, options in self.fieldsets:
-            yield Fieldset(self, name, **options)
+        for title, options in self.fieldsets:
+            yield Fieldset(self, title, **options)
 
     def _html_fieldset_output(self,
                               fieldset_row,
@@ -134,7 +134,7 @@ class FieldsetMixin(object):
             else:
                 description = u''
             output.append(fieldset_row % {
-                                    'name': fieldset.name or u'',
+                                    'title': fieldset.title or u'',
                                     'description': description,
                                     'fields': u'\n'.join(fieldset_output)})
         if top_errors:
@@ -157,7 +157,7 @@ class FieldsetMixin(object):
         "Returns this form's fieldsets rendered as HTML <tr>s -- " \
         "excluding the <table></table>."
         return self._html_fieldset_output(
-            u'<tr><th colspan="2"><h2>%(name)s</h2>%(description)s</th></tr>%(fields)s',
+            u'<tr><th colspan="2"><h2>%(title)s</h2>%(description)s</th></tr>%(fields)s',
             u'<tr><th>%(label)s</th><td>%(errors)s%(field)s%(help_text)s' \
                                                                 u'</td></tr>',
             u'<tr><td colspan="2">%s</td></tr>',
@@ -169,7 +169,7 @@ class FieldsetMixin(object):
         "Returns this form's fieldsets rendered as HTML <li>s -- " \
         "excluding the <ul></ul>."
         return self._html_fieldset_output(
-            u'<li>\n<h2>%(name)s</h2>%(description)s\n<ul>\n%(fields)s\n'\
+            u'<li>\n<h2>%(title)s</h2>%(description)s\n<ul>\n%(fields)s\n'\
                                                               u'</ul>\n</li>',
             u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
             u'<li>%s</li>',
@@ -180,7 +180,7 @@ class FieldsetMixin(object):
     def as_fieldset_p(self):
         "Returns this form's fieldsets rendered as HTML <p>s."
         return self._html_fieldset_output(
-            u'<div>\n<h2>%(name)s</h2>%(description)s\n%(fields)s\n</div>',
+            u'<div>\n<h2>%(title)s</h2>%(description)s\n%(fields)s\n</div>',
             u'<p>%(label)s %(field)s%(help_text)s</p>',
             u'%s',
             u'</p></div>',
