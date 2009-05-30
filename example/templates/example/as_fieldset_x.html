@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Django-formfieldset Example - Render With <code>as_fieldset_*</code> Methods</a></title>
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/main.css" />
+</head>
+<body>
+
+<h1>Render With <code>as_fieldset_*</code> Methods</a></h1>
+<p><a href="{% url homepage %}">Homepage</a></p>
+
+<h2>Form Definition</h2>
+<pre><code>{{ forms_py|safe }}</code></pre>
+
+<h2>Render With <code>as_fieldset_table</code></h2>
+<pre><code>{% templatetag openvariable %} form.as_fieldset_table {% templatetag closevariable %}</code></pre>
+<form><table>{{ form.as_fieldset_table }}</table></form>
+
+<h2>Render With <code>as_fieldset_ul</code></h2>
+<pre><code>{% templatetag openvariable %} form.as_fieldset_ul {% templatetag closevariable %}</code></pre>
+<form><ul>{{ form.as_fieldset_ul }}</ul></form>
+
+<h2>Render With <code>as_fieldset_p</code></h2>
+<pre><code>{% templatetag openvariable %} form.as_fieldset_p {% templatetag closevariable %}</code></pre>
+<form><table>{{ form.as_fieldset_p }}</table></form>
+
+</body>
+</html>
