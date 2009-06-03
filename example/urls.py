@@ -2,8 +2,15 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 
 
-urlpatterns = patterns('example.views',
-    (r'^$', 'homepage'),
+urlpatterns = patterns('',
+    (r'^$',
+        'django.views.generic.simple.direct_to_template',
+        {'template': 'example/index.html'},
+        'homepage'),
+    (r'^example/(?P<example_name>\w+)/$',
+        'example.views.example',
+        {},
+        'example'),
 )
 
 if settings.DEBUG:

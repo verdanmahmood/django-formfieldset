@@ -2,20 +2,14 @@
 <head>
     <title>Django-formfieldset Example</title>
     <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/main.css" />
-
 </head>
 <body>
 
-<h2>Form Definition</h2>
-<pre><code>{{ forms_py|safe }}</code></pre>
-
-<h2>Normal Render</h2>
-<pre><code>{% templatetag openvariable %} form {% templatetag closevariable %}</code></pre>
-<form><table>{{ form }}</table></form>
-
-<h2>Fieldset Render</h2>
-<pre><code>{% templatetag openvariable %} form.as_fieldset_table {% templatetag closevariable %}</code></pre>
-<form><table>{{ form.as_fieldset_table }}</table></form>
+<h1>Django-formfieldset Examples</h1>
+<ol>
+    <li><a href="{% url example "simple" %}">Simple Example</a></li>
+    <li><a href="{% url example "as_fieldset_x" %}">Render With <code>as_fieldset_*</code> Methods</a></li>
+</ol>
 
 </body>
 </html>

@@ -4,11 +4,13 @@ import forms
 
 
 class FieldsetRenderTestCase(TestCase):
-    def _test_form(self):
+    def setUp(self):
         class TestForm(django_forms.Form, forms.FieldsetMixin):
             test_field1 = django_forms.CharField()
             test_field2 = django_forms.CharField()
             test_field3 = django_forms.CharField()
+            test_field4 = django_forms.CharField(
+                                      widget=django_forms.widgets.HiddenInput)
 
             fieldsets = (
                 (u'Fieldset1', {
@@ -16,40 +18,39 @@ class FieldsetRenderTestCase(TestCase):
                     'fields': ('test_field1',),
                 }),
                 (u'Fieldset2', {
-                    'fields': ('test_field2', 'test_field3'),
+                    'fields': ('test_field2', 'test_field3', 'test_field4'),
                 }),
             )
 
             def clean_test_field2(self):
-                raise django_forms.ValidationError(
-                                [u'Test Error - Field Level - 1',
-                                 u'Test Error - Field Level - 2'])
+                if self.cleaned_data['test_field2'] != u'':
+                    raise django_forms.ValidationError(
+                                    [u'Test Error - Field Level - 1',
+                                    u'Test Error - Field Level - 2'])
 
             def clean(self):
                 raise django_forms.ValidationError(u'Test Error - Top Level')
-        return TestForm
+        self.test_form = TestForm
 
-    def testFieldsetRender(self):
-        RESPONSE = u"""<toplevelerrors><ul class="errorlist"><li>Test Error - Top Level</li></ul></toplevelerrors>
-<fieldset>
-<name>Fieldset1</name><help>Test Description</help>
-<row><ul class="errorlist"><li>This field is required.</li></ul><input type="text" name="test_field1" id="id_test_field1" /></row>
-</fieldset>
-<fieldset>
-<name>Fieldset2</name>
-<row><ul class="errorlist"><li>Test Error - Field Level - 1</li><li>Test Error - Field Level - 2</li></ul><input type="text" name="test_field2" value="Test Value" id="id_test_field2" /></row>
-<row><ul class="errorlist"><li>This field is required.</li></ul><input type="text" name="test_field3" id="id_test_field3" /></row>
-</fieldset>"""
-        form = self._test_form()(data={'test_field2': u'Test Value'})
+    def test_fieldset_render(self):
+        """Test if the form is being rendered at all and all the elements are
+           in the result.
+        """
+        form = self.test_form(data={'test_field2': u'Test Value'})
         self.assertEqual(form.is_valid(), False)
-        self.assertEqual(
-            form._html_fieldset_output(
-                '<fieldset>\n<name>%(name)s</name>' \
-                    '%(description)s\n%(fields)s\n</fieldset>',
-                '<row>%(errors)s%(field)s%(help_text)s</row>',
-                '<toplevelerrors>%s</toplevelerrors>',
-                '',
-                '<help>%s</help>',
-                False),
-            RESPONSE
-        )
+        for method in ('as_fieldset_table', 'as_fieldset_ul', 'as_fieldset_p'):
+            rendered = getattr(form, method)()
+            # Are all errors rendered somehow?
+            self.assertTrue(u'Test Error - Top Level' in rendered)
+            self.assertTrue(u'Test Error - Field Level - 1' in rendered)
+            self.assertTrue(u'Test Error - Field Level - 2' in rendered)
+            # Are all fields present?
+            for field in form.fields.keys():
+                bf= django_forms.forms.BoundField(form,
+                                                  form.fields[field],
+                                                  field)
+                self.assertTrue(unicode(bf) in rendered)
+            # Check for fieldset titles & decriptions
+            self.assertTrue(u'Fieldset1' in rendered)
+            self.assertTrue(u'Fieldset2' in rendered)
+            self.assertTrue(u'Test Description' in rendered)

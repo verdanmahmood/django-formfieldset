@@ -4,7 +4,7 @@ body {
 }
 
 h2 {
-    margin: 24px 0 4px 0;
+    margin: 32px 0 4px 0;
 }
 
 th {
@@ -20,8 +20,11 @@ pre  {
 
 form h2 {
     color: #859;
+    margin: 0;
 }
 
+
+/* as_table */
 form table {
     background: #edf;
     width: 800px;
@@ -31,3 +34,34 @@ form table, form table th, form table td {
     border: 1px solid #859;
     border-collapse: collapse;
 }
+
+
+/* as_ul */
+form > ul {
+    margin: 0;
+    padding-left: 0;
+    width: 800px;
+}
+form ul li {
+    background: #edf;
+    list-style: none;
+    padding: 4px;
+}
+
+form ul ul {
+    padding-left: 3em;
+}
+form ul ul li {
+    background: #fee;
+    margin: 4px 0;
+}
+
+
+/* as_p */
+form p {
+    background: #edf;
+    margin: 4px 0;
+    padding: 4px 2px;
+    width: 796px;
+}
+
