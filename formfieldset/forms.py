@@ -93,26 +93,6 @@ class Fieldset(object):
                                 'description': description,
                                 'fields': u'\n'.join(output)}
 
-    def as_table(self):
-        fields = self.html_output(
-            u'<tr><th>%(label)s</th>'
-                u'<td>%(errors)s%(field)s%(help_text)s</td></tr>',
-            u'<tr><td colspan="2">%s</td></tr>',
-            '</td></tr>',
-            u'<br />%s',
-            False,
-            stand_alone=True)
-        description = ''
-        if self.description is not None:
-            description = self.description
-        return mark_safe(
-            u'<tr><th colspan="2">'
-            u'<h2>%(title)s</h2>%(description)s</th></tr>%(fields)s'
-                    % {'title': self.title,
-                       'description': description,
-                       'fields': u'\n'.join(fields),
-                      })
-
 
 class FieldsetMixin(object):
     def iter_fieldsets(self):
