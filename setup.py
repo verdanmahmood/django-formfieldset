@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 from distutils.core import setup
 
 
 setup(
     name = 'django-formfieldset',
-    version = '1.0.0',
+    version = '1.0',
     url = 'http://github.com/muhuk/django-formfieldset/tree/master',
-    author = 'Atamert Ölçgen',
+    author = u'Atamert \xd6l\xe7gen',
     author_email = 'muhuk@muhuk.com',
     license = 'BSD',
     packages = ['formfieldset'],

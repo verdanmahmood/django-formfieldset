@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
-
-
-__author__ = 'Atamert Ölçgen'
-__copyright__ = "Copyright 2009, Ölçgen Bilişim"
-__credits__ = ['Atamert Ölçgen', 'Daniel Watkins']
+__author__ = u'Atamert \xd6l\xe7gen'
+__copyright__ = u'Copyright 2009, \xd6l\xe7gen Bili\u015fim'
+__credits__ = [u'Atamert \xd6l\xe7gen', 'Daniel Watkins']
 
 
 __license__ = 'BSD'
-__version__ = '1.0.0'
-__maintainer__ = 'Atamert Ölçgen'
+__version__ = '1.0'
+__maintainer__ = u'Atamert \xd6l\xe7gen'
 __email__ = 'muhuk@muhuk.com'
 __status__ = 'Production'
