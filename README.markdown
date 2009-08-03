@@ -49,3 +49,8 @@ Usage
 
 
   [ref1]: http://docs.djangoproject.com/en/dev/ref/contrib/admin/#fieldsets
+
+See Also
+========
+
+ * [django-form-utils](http://launchpad.net/django-form-utils)
