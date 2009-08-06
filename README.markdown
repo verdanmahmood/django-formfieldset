@@ -19,7 +19,6 @@ Installation
  1. Add `"django-formfieldset"` directory to your Python path.
  2. Add `"formfieldset"` to your `INSTALLED_APPS` tuple
     found in your settings file. (optional - to be able to run tests)
- 3. Create your forms with `FieldsetMixin`
 
 
 Testing & Example
@@ -38,9 +37,10 @@ Then you can visit `http://localhost:8000/` to view the example.
 Usage
 =====
 
- 1. Add a `fieldsets` attribute to your form. See [admin docs][ref1] for
+ 1. Create your form with `FieldsetMixin`.
+ 2. Add a `fieldsets` attribute to your form. See [admin docs][ref1] for
     detailed explanation.
- 2. Render your form with fieldset enabled methods:
+ 3. Render your form with fieldset enabled methods:
     * You can use `iter_fieldsets()` for custom form rendering. It will yield
       `Fieldset` objects. `Fieldset`s act as iterators for widgets in them.
     * You can use `as_fieldset_table()`, `as_fieldset_ul()` and
