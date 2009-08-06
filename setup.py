@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name = 'django-formfieldset',
-    version = '1.0',
+    version = '1.1',
     url = 'http://github.com/muhuk/django-formfieldset/tree/master',
     author = u'Atamert \xd6l\xe7gen',
     author_email = 'muhuk@muhuk.com',
