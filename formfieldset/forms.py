@@ -96,6 +96,38 @@ class Fieldset(object):
 
 
 class FieldsetMixin(object):
+    _tmpl_table = (
+        u'<tr><th colspan="2">%(title)s%(description)s</th></tr>%(fields)s',
+        u'<h2>%s</h2>',
+        u'%s',
+        u'<tr><th>%(label)s</th><td>%(errors)s' \
+                                          u'%(field)s%(help_text)s</td></tr>',
+        u'<tr><td colspan="2">%s</td></tr>',
+        u'</td></tr>',
+        u'<br />%s',
+        False,
+    )
+    _tmpl_ul = (
+        u'<li>%(title)s%(description)s<ul>%(fields)s</ul></li>',
+        u'<h2>%s</h2>',
+        u'%s',
+        u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
+        u'<li>%s</li>',
+        u'</li>',
+        u' %s',
+        False,
+    )
+    _tmpl_p = (
+        u'<div>%(title)s%(description)s%(fields)s</div>',
+        u'<h2>%s</h2>',
+        u'%s',
+        u'<p>%(label)s %(field)s%(help_text)s</p>',
+        u'%s',
+        u'</p>',
+        u' %s',
+        True,
+    )
+
     def _validate_fieldsets(self):
         valid = False
         fields_defined = sum((fset[1]['fields'] for fset in self.fieldsets),
@@ -164,39 +196,13 @@ class FieldsetMixin(object):
     def as_fieldset_table(self):
         "Returns this form's fieldsets rendered as HTML <tr>s -- " \
         "excluding the <table></table>."
-        return self._html_fieldset_output(
-            u'<tr><th colspan="2">%(title)s%(description)s</th></tr>' \
-                                                                 '%(fields)s',
-            u'<h2>%s</h2>',
-            u'%s',
-            u'<tr><th>%(label)s</th><td>%(errors)s%(field)s%(help_text)s' \
-                                                                u'</td></tr>',
-            u'<tr><td colspan="2">%s</td></tr>',
-            '</td></tr>',
-            u'<br />%s',
-            False)
+        return self._html_fieldset_output(*self._tmpl_table)
 
     def as_fieldset_ul(self):
         "Returns this form's fieldsets rendered as HTML <li>s -- " \
         "excluding the <ul></ul>."
-        return self._html_fieldset_output(
-            u'<li>%(title)s%(description)s<ul>%(fields)s</ul></li>',
-            u'<h2>%s</h2>',
-            u'%s',
-            u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
-            u'<li>%s</li>',
-            u'</li>',
-            u' %s',
-            False)
+        return self._html_fieldset_output(*self._tmpl_ul)
 
     def as_fieldset_p(self):
         "Returns this form's fieldsets rendered as HTML <p>s."
-        return self._html_fieldset_output(
-            u'<div>%(title)s%(description)s%(fields)s</div>',
-            u'<h2>%s</h2>',
-            u'%s',
-            u'<p>%(label)s %(field)s%(help_text)s</p>',
-            u'%s',
-            u'</p>',
-            u' %s',
-            True)
+        return self._html_fieldset_output(*self._tmpl_p)
