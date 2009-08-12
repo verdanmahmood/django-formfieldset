@@ -1,6 +1,48 @@
+import warnings
 from django.test import TestCase
 from django import forms as django_forms
 import forms
+
+
+class FieldsetValidationTestCase(TestCase):
+    def setUp(self):
+        class BaseForm(django_forms.Form, forms.FieldsetMixin):
+            test_field1 = django_forms.CharField()
+            test_field2 = django_forms.CharField()
+            test_field3 = django_forms.CharField()
+
+        self.base_form = BaseForm
+        warnings.simplefilter('ignore', UserWarning)
+
+    def test_missing_fields(self):
+        class TestForm(self.base_form):
+            fieldsets = (
+                (u'Fieldset1', {'fields': ('test_field1',)}),
+                (u'Fieldset2', {'fields': ('test_field2',)}),
+            )
+
+        self.assertEqual(TestForm().validate_fieldsets(), False)
+
+    def test_duplicate_fields(self):
+        class TestForm(self.base_form):
+            fieldsets = (
+                (u'Fieldset1', {'fields': ('test_field1', 'test_field3')}),
+                (u'Fieldset2', {'fields': ('test_field2', 'test_field3')}),
+            )
+
+        self.assertEqual(TestForm().validate_fieldsets(), False)
+
+    def test_valid_fieldset(self):
+        class TestForm(self.base_form):
+            fieldsets = (
+                (u'Fieldset1', {'fields': ('test_field1',)}),
+                (u'Fieldset2', {'fields': ('test_field2', 'test_field3')}),
+            )
+
+        self.assertEqual(TestForm().validate_fieldsets(), True)
+
+    def tearDown(self):
+        warnings.resetwarnings()
 
 
 class FieldsetRenderTestCase(TestCase):

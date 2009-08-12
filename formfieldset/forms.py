@@ -1,3 +1,4 @@
+import warnings
 from django import forms as django_forms
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -95,8 +96,35 @@ class Fieldset(object):
 
 
 class FieldsetMixin(object):
+    def _validate_fieldsets(self):
+        valid = False
+        fields_defined = sum((fset[1]['fields'] for fset in self.fieldsets),
+                             ())
+        fields_set = set(fields_defined)
+        # Fieldsets are valid if:
+        #  * Each field is defined in a Fieldset
+        #  * Each field is defined only once.
+        if len(fields_defined) == len(fields_set) and \
+                                        set(self.fields.keys()) == fields_set:
+            valid = True
+        return valid
+
+    def validate_fieldsets(self):
+        "Return ``True`` if ``fieldsets`` is defined properly."
+        if hasattr(self, '__fieldsets_valid') and self.__fieldsets_valid:
+            return True
+        self.__fieldsets_valid = self._validate_fieldsets()
+        if not self.__fieldsets_valid:
+            warnings.warn('Fieldset definition for %s is invalid. Each ' \
+                          'field must be defined in one and only one ' \
+                          'Fieldset.' % self.__class__.__name__,
+                          UserWarning,
+                          stacklevel=3)
+        return self.__fieldsets_valid
+
     def iter_fieldsets(self):
         "Iterates fieldsets."
+        self.validate_fieldsets()
         for title, options in self.fieldsets:
             yield Fieldset(self, title, **options)
 
