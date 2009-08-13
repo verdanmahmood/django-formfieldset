@@ -161,6 +161,11 @@ class FieldsetMixin(object):
         for title, options in self.fieldsets:
             yield Fieldset(self, title, **options)
 
+    def fieldset_dict(self):
+        if not hasattr(self, '__fieldset_dict'):
+            self.__fieldset_dict = dict((fset.title, fset) for fset in self.iter_fieldsets())
+        return self.__fieldset_dict
+
     def _html_fieldset_output(self,
                               fieldset_html,
                               title_html,

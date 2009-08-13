@@ -45,6 +45,33 @@ class FieldsetValidationTestCase(TestCase):
         warnings.resetwarnings()
 
 
+class FieldsetAccessTestCase(TestCase):
+    def setUp(self):
+        class BaseForm(django_forms.Form, forms.FieldsetMixin):
+            test_field1 = django_forms.CharField()
+            test_field2 = django_forms.CharField()
+            test_field3 = django_forms.CharField()
+
+            fieldsets = (
+                (u'Fieldset1', {'fields': ('test_field1',)}),
+                (u'Fieldset2', {'fields': ('test_field2', 'test_field3')}),
+            )
+
+        self.base_form = BaseForm
+
+    def test_iter_fieldsets(self):
+        fieldsets = [fset.title for fset in self.base_form().iter_fieldsets()]
+        self.assertEqual(len(fieldsets), 2)
+        self.assertEqual('Fieldset1' in fieldsets, True)
+        self.assertEqual('Fieldset2' in fieldsets, True)
+
+    def test_fieldset_dict(self):
+        fset_dict = self.base_form().fieldset_dict()
+        self.assertEqual(len(fset_dict), 2)
+        self.assertEqual('Fieldset1' in fset_dict.keys(), True)
+        self.assertEqual('Fieldset2' in fset_dict.keys(), True)
+
+
 class FieldsetRenderTestCase(TestCase):
     def setUp(self):
         class TestForm(django_forms.Form, forms.FieldsetMixin):
