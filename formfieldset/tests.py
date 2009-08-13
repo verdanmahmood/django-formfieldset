@@ -1,4 +1,3 @@
-import warnings
 from django.test import TestCase
 from django import forms as django_forms
 import forms
@@ -12,7 +11,6 @@ class FieldsetValidationTestCase(TestCase):
             test_field3 = django_forms.CharField()
 
         self.base_form = BaseForm
-        warnings.simplefilter('ignore', UserWarning)
 
     def test_missing_fields(self):
         class TestForm(self.base_form):
@@ -40,9 +38,6 @@ class FieldsetValidationTestCase(TestCase):
             )
 
         self.assertEqual(TestForm().validate_fieldsets(), True)
-
-    def tearDown(self):
-        warnings.resetwarnings()
 
 
 class FieldsetAccessTestCase(TestCase):
