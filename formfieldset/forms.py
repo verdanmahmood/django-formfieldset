@@ -1,8 +1,11 @@
-import warnings
 from django import forms as django_forms
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
+
+
+class FieldsetError(ValueError):
+    pass
 
 
 class Fieldset(object):
@@ -141,18 +144,16 @@ class FieldsetMixin(object):
             valid = True
         return valid
 
-    def validate_fieldsets(self):
+    def validate_fieldsets(self, force=False):
         "Return ``True`` if ``fieldsets`` is defined properly."
-        if hasattr(self, '__fieldsets_valid') and self.__fieldsets_valid:
-            return True
-        self.__fieldsets_valid = self._validate_fieldsets()
+        if force or not hasattr(self, '__fieldsets_valid'):
+            self.__fieldsets_valid = self._validate_fieldsets()
         if not self.__fieldsets_valid:
-            warnings.warn('Fieldset definition for %s is invalid. Each ' \
-                          'field must be defined in one and only one ' \
-                          'Fieldset.' % self.__class__.__name__,
-                          UserWarning,
-                          stacklevel=3)
-        return self.__fieldsets_valid
+            raise FieldsetError('Fieldset definition for %s is invalid. ' \
+                                'Each field must be defined in one and ' \
+                                'only one Fieldset.' % self.__class__.__name__)
+        else:
+            return True
 
     def iter_fieldsets(self):
         "Iterates fieldsets."

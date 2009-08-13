@@ -21,7 +21,7 @@ class FieldsetValidationTestCase(TestCase):
                 (u'Fieldset2', {'fields': ('test_field2',)}),
             )
 
-        self.assertEqual(TestForm().validate_fieldsets(), False)
+        self.assertRaises(forms.FieldsetError, TestForm().validate_fieldsets)
 
     def test_duplicate_fields(self):
         class TestForm(self.base_form):
@@ -30,7 +30,7 @@ class FieldsetValidationTestCase(TestCase):
                 (u'Fieldset2', {'fields': ('test_field2', 'test_field3')}),
             )
 
-        self.assertEqual(TestForm().validate_fieldsets(), False)
+        self.assertRaises(forms.FieldsetError, TestForm().validate_fieldsets)
 
     def test_valid_fieldset(self):
         class TestForm(self.base_form):
