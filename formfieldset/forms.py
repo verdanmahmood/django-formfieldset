@@ -162,6 +162,8 @@ class FieldsetMixin(object):
             yield Fieldset(self, title, **options)
 
     def fieldset_dict(self):
+        # No need to call validate_fieldsets() since we
+        # are using iter_fieldsets.
         if not hasattr(self, '__fieldset_dict'):
             self.__fieldset_dict = dict((fset.title, fset) for fset in self.iter_fieldsets())
         return self.__fieldset_dict
