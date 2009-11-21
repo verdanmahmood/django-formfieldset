@@ -90,7 +90,11 @@ class FieldsetRenderTestCase(TestCase):
                 if self.cleaned_data['test_field2'] != u'':
                     raise django_forms.ValidationError(
                                     [u'Test Error - Field Level - 1',
-                                    u'Test Error - Field Level - 2'])
+                                     u'Test Error - Field Level - 2'])
+
+            def clean_test_field4(self):
+                raise django_forms.ValidationError(
+                                                 u'Test Error - Hidden Field')
 
             def clean(self):
                 raise django_forms.ValidationError(u'Test Error - Top Level')
@@ -100,12 +104,14 @@ class FieldsetRenderTestCase(TestCase):
         """Test if the form is being rendered at all and all the elements are
            in the result.
         """
-        form = self.test_form(data={'test_field2': u'Test Value'})
+        form = self.test_form(data={'test_field2': u'Test Value',
+                                    'test_field4': u'Test Value'})
         self.assertEqual(form.is_valid(), False)
         for method in ('as_fieldset_table', 'as_fieldset_ul', 'as_fieldset_p'):
             rendered = getattr(form, method)()
             # Are all errors rendered somehow?
             self.assertTrue(u'Test Error - Top Level' in rendered)
+            self.assertTrue(u'Test Error - Hidden Field' in rendered)
             self.assertTrue(u'Test Error - Field Level - 1' in rendered)
             self.assertTrue(u'Test Error - Field Level - 2' in rendered)
             # Are all fields present?
@@ -118,3 +124,29 @@ class FieldsetRenderTestCase(TestCase):
             self.assertTrue(u'Fieldset1' in rendered)
             self.assertTrue(u'Fieldset2' in rendered)
             self.assertTrue(u'Test Description' in rendered)
+
+    def test_individual_fieldset_render(self):
+        form = self.test_form(data={'test_field2': u'Test Value',
+                                    'test_field4': u'Test Value'})
+        fieldset1 = form.fieldset_dict()['Fieldset1']
+        fieldset2 = form.fieldset_dict()['Fieldset2']
+        self.assertEqual(form.is_valid(), False)
+        for method in ('as_table', 'as_ul', 'as_p'):
+            rendered1 = getattr(fieldset1, method)()
+            rendered2 = getattr(fieldset2, method)()
+            # Are all errors rendered somehow?
+            self.assertTrue(u'Test Error - Field Level - 1' in rendered2)
+            self.assertTrue(u'Test Error - Field Level - 2' in rendered2)
+            self.assertTrue(u'Test Error - Hidden Field' in rendered2)
+            # Are all fields present?
+            for fieldset, rendered in ((fieldset1, rendered1),
+                                       (fieldset2, rendered2)):
+                for field in fieldset.fields:
+                    bf= django_forms.forms.BoundField(form,
+                                                      form.fields[field],
+                                                      field)
+                    self.assertTrue(unicode(bf) in rendered)
+            # Check for fieldset titles & decriptions
+            self.assertTrue(u'Fieldset1' in rendered1)
+            self.assertTrue(u'Fieldset2' in rendered2)
+            self.assertTrue(u'Test Description' in rendered1)

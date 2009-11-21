@@ -35,18 +35,25 @@ class Fieldset(object):
                      row_ender,
                      help_text_html,
                      errors_on_separate_row,
-                     top_errors,
+                     top_errors=None,
                      error_class=django_forms.util.ErrorList,
                      label_suffix=u':'):
         output, hidden_fields = [], []
+        # top_errors is not supplied when the
+        # fieldset is rendered individually
+        if top_errors is None:
+            top_errors = []
+            top_errors_on_fieldset = True
+        else:
+            top_errors_on_fieldset = False
         for bf in self:
             # Escape and cache in local variable.
             bf_errors = error_class([escape(error) for error in bf.errors])
             if bf.is_hidden:
                 if bf_errors:
-                    top_errors.extend(
-                        [u'(Hidden field %s) %s' % (bf.name, force_unicode(e))
-                            for e in bf_errors])
+                    top_errors.extend([u'(Hidden field %s) %s' %
+                                       (bf.name, force_unicode(e))
+                                       for e in bf_errors])
                 hidden_fields.append(unicode(bf))
             else:
                 if errors_on_separate_row and bf_errors:
@@ -93,9 +100,25 @@ class Fieldset(object):
                                                             self.description))
         else:
             description = u''
+        if top_errors_on_fieldset:
+            output.insert(0, error_row % force_unicode(top_errors))
         return fieldset_html % {'title': title,
                                 'description': description,
                                 'fields': u'\n'.join(output)}
+
+    def as_table(self):
+        "Returns this fieldset's fields rendered as HTML <tr>s -- " \
+        "excluding the <table></table>."
+        return self._html_output(*self.form._tmpl_table)
+
+    def as_ul(self):
+        "Returns this fieldset's fields rendered as HTML <li>s -- " \
+        "excluding the <ul></ul>."
+        return self._html_output(*self.form._tmpl_ul)
+
+    def as_p(self):
+        "Returns this fieldset's fields rendered as HTML <p>s."
+        return self._html_output(*self.form._tmpl_p)
 
 
 class FieldsetMixin(object):
