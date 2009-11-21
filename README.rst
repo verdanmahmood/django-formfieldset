@@ -6,9 +6,11 @@ Features
 
 - Fieldset functionality similar to ``ModelAdmin``
 - Shorthand rendering functions with fieldsets both for whole forms and for individual fieldsets
+
   - render as ``P``
   - render as ``TABLE``
   - render as ``UL``
+
 - Templates are class variables
 - Overrides nothing in ``django.forms.Form``
 
