@@ -63,5 +63,5 @@ Usage
 See Also
 ========
 
--  `django-form-utils <http://launchpad.net/django-form-utils>`_
+-  `django-form-utils <http://bitbucket.org/carljm/django-form-utils/>`_
 
