@@ -5,12 +5,12 @@ from django.conf import settings
 urlpatterns = patterns('',
     (r'^$',
         'django.views.generic.simple.direct_to_template',
-        {'template': 'example/index.html'},
+        {'template': 'examples/index.html'},
         'homepage'),
-    #(r'^example/(?P<example_name>\w+)/$',
-        #'example.views.example',
-        #{},
-        #'example'),
+    (r'^example/(?P<example_name>simple)/$',
+        'examples.views.example',
+        {},
+        'example'),
 )
 
 if settings.DEBUG:

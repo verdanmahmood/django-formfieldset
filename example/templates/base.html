@@ -10,7 +10,6 @@
       <title>Example application for django-formfieldset - {% block title %}{% endblock %}</title>
       <link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" />
       <link rel="stylesheet" href="{{ MEDIA_URL }}css/text.css" type="text/css" />
-      <link rel="stylesheet" href="{{ MEDIA_URL }}css/960.css" type="text/css" />
       <link rel="stylesheet" href="{{ MEDIA_URL }}css/main.css" type="text/css" />
       <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.3.2.min.js"></script>
       <script type="text/javascript">var MEDIA_URL = "{{ MEDIA_URL }}";</script>
@@ -19,5 +18,31 @@
     {% endblock head %}
   </head>
   <body>{% block body %}
+    <div id="page">
+      <div id="header">
+        <div id="links"><a href="http://github.com/muhuk/django-formfieldset">Official Homepage</a></div>
+        <h1>django-formfieldset</h1>
+        <h2>Example Application</h2>
+      </div>
+
+      <div id="page_main">
+        <div id="page_left">
+          <div id="content">{% block content %}
+          {% endblock content %}</div>
+        </div>
+
+        <div id="page_right">
+          <div id="sidepanel">{% block sidepanel %}
+            <h3>Pages</h3>
+            <ul>
+              <li><a href="{% url homepage %}">Home</a></li>
+            </ul>
+            <p>Test</p>
+          {% endblock sidepanel %}</div>
+        </div>
+      </div>
+
+      <div id="footer">django-formfieldset</div>
+    </div>
   {% endblock body %}</body>
 </html>

@@ -22,6 +22,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'formfieldset',
+    'examples',
 )
 
 SECRET_KEY = '#s$zy-6goa)#&bn5)z!)ky+=295(x)pj!_p34n(1z_8_xm55no'
