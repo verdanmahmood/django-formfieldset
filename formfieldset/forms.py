@@ -12,12 +12,12 @@ class Fieldset(object):
     "Simple iterable for holding fieldset information."
 
     def __init__(self, form, title=None, fields=(),
-                 description=None, extra_content={}):
+                 description=None, extra_content=None):
         self.form = form
         self.title = title
         self.fields = fields
         self.description = description
-        self.extra_content = extra_content
+        self.extra_content = extra_content or {}
 
     def __iter__(self):
         "Iterates through fields in the fieldset."
