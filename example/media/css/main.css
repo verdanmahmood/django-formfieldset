@@ -10,14 +10,15 @@ body {
 
 
 code {
-  white-space:nowrap; border-bottom: 1px dotted;
+  white-space:nowrap;
   font-size: 14px;
-  color: #234f32; border-bottom-color: #234f32;
+  color: #234f32;
 }
 
 
 div#content {
   padding: 4px 12px 20px 12px; min-height: 450px;
+  text-align: justify;
   background-color: #fff;
 }
 div#content a, div#content a:visited {
@@ -40,7 +41,11 @@ div.example {
 }
 div.example div.rendered {
   padding: 12px 8px;
+  font-size: 14px;
   background-color: #eee;
+}
+div.example div.rendered table th {
+  padding-right: 6px;
 }
 div.example h3, div.example h4 {
   margin: 4px 0 2px 0;
