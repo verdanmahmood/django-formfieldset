@@ -52,6 +52,9 @@ div.example div.rendered table th {
   padding-right: 6px;
   vertical-align: top;
 }
+div.example div.rendered table th[colspan="2"] {
+  min-height: 24px;
+}
 div.example h3, div.example h4 {
   margin: 4px 0 2px 0;
   color: #234f32;
