@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load examples_tags %}
+
+
+{% block title %}Fieldset Definitions{% endblock %}
+
+
+{% block content %}
+  <h3>Fieldset Definitions</h3>
+  <p><strong>Django-formfieldset</strong>'s fieldset definitions are quite similar to <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets">fieldset definitions of admin app</a>.</p>
+
+  <p>The<code>fieldsets</code> is a list of two-tuples, in which each two-tuple represents a section of the form. The two-tuples are in the format <code>(name, field_options)</code>, where <code>name</code> is a string representing the title of the fieldset and <code>field_options</code> is a dictionary defining the contents of the fieldset.</p>
+
+  <p>The <code>field_options</code> dictionary can have the following keys:</p>
+
+  <ul>
+    <li>
+      <strong><code>fields</code></strong><br />
+      A list or tuple containing field names to be displayed inside this fieldset. This key is required.
+    </li>
+    <li>
+      <strong><code>description</code></strong><br />
+      Text to display after fieldset title. Default is <code>None</code>. Optional.
+    </li>
+    <li>
+      <strong><code>extra_content</code></strong><br />
+      A dictionary of any extra information. Default is an empty dictionary. Optional.
+    </li>
+  </ul>
+
+  <p>Take a look at the <code>fieldsets</code> definition from <a href="{% url example "simple" %}">A Simple Example</a>:</p>
+
+  <pre class="code">    fieldsets = (
+        (u'Personal Info', {'fields': ('your_name',
+                                       'email_address',
+                                       'homepage')}),
+        (u'Message', {'fields': ('your_message',)}),
+        (u'Options', {'fields': ('send_a_copy_to_me',)}),
+    )</pre>
+{% endblock content %}

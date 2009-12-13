@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load examples_tags %}
+
+
+{% block title %}Fieldset Rendering{% endblock %}
+
+
+{% block content %}
+  <h3>Fieldset Rendering</h3>
+  <p>There are three extra methods defined on fieldset enabled forms that correspond to three rendering methods of regular forms.</p>
+
+  <table>
+    <tr class="header">
+      <th><code>django.forms.Form</code></th>
+      <th><code>formfieldset.forms.FieldsetMixin</code></th>
+    </tr>
+    <tr class="odd">
+      <td><code>as_p</code></td>
+      <td><code>as_fieldset_p</code></td>
+    </tr>
+    <tr class="even">
+      <td><code>as_ul</code></td>
+      <td><code>as_fieldset_ul</code></td>
+    </tr>
+    <tr class="odd">
+      <td><code>as_table</code>*</td>
+      <td><code>as_fieldset_table</code></td>
+    </tr>
+    <tr class="footer">
+      <td colspan="2">*: default rendering method</td>
+    </tr>
+  </table>
+
+  {% example "rendering" %}
+
+  <p>As you can see above rendering with fieldsets is as easy as calling <code>{% templatetag openblock %} form.as_fieldset_p {% templatetag closeblock %}</code>, <code>{% templatetag openblock %} form.as_fieldset_ul {% templatetag closeblock %}</code> or <code>{% templatetag openblock %} form.as_fieldset_table {% templatetag closeblock %}</code> in your template.</p>
+{% endblock content %}

@@ -1,13 +1,13 @@
 <div class="example">
   <h3>{{ name|title }} Example</h3>
   <h4>Form Code</h4>
-  <pre>{{ form_code }}</pre>
+  {{ form_code }}
 
   <h4>Template Code</h4>
-  <pre>&lt;form action="" method="POST"&gt;{{ template }}&lt;/form&gt;</pre>
+  {{ template }}
 
   <h4>Result</h4>
-  <pre>&lt;form action="" method="POST"&gt;{{ rendered|force_escape }}&lt;/form&gt;</pre>
+  {{ rendered_code }}
 
   <h4>Rendered Result</h4>
   <div class="rendered"><form action="" method="POST">{{ rendered }}</form></div>

@@ -24,6 +24,30 @@ div#content {
 div#content a, div#content a:visited {
   color: #ab5603;
 }
+div#content > table {
+  margin: 24px auto;
+  border-bottom: 1px solid #092e20;
+}
+div#content > table th, div#content > table td {
+  padding: 2px 4px;
+}
+div#content > table th + th, div#content > table td + td {
+  padding-left: 18px;
+}
+div#content > table tr.header th {
+  background-color: #092e20;
+}
+div#content > table tr.header th, div#content > table tr.header th code {
+  color: #fff;
+}
+div#content > table tr.even td {
+  background-color: #e0ffb8;
+}
+div#content > table tr.footer td {
+  font-size: 12px;
+  text-align: right;
+  background-color: #eee;
+}
 
 
 div#footer {
@@ -35,10 +59,72 @@ div#footer {
 
 div.example {
   border: 2px solid;
-  margin: 4px 26px;
+  margin: 24px 26px;
   padding: 6px 4px;
   border-color: #234f32;
 }
+div.example div.highlight .hll { background-color: #ffffcc }
+div.example div.highlight  { background: #f8f8f8; }
+div.example div.highlight .c { color: #408080; font-style: italic } /* Comment */
+div.example div.highlight .err { border: 1px solid #FF0000 } /* Error */
+div.example div.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+div.example div.highlight .o { color: #666666 } /* Operator */
+div.example div.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+div.example div.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+div.example div.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+div.example div.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+div.example div.highlight .gd { color: #A00000 } /* Generic.Deleted */
+div.example div.highlight .ge { font-style: italic } /* Generic.Emph */
+div.example div.highlight .gr { color: #FF0000 } /* Generic.Error */
+div.example div.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+div.example div.highlight .gi { color: #00A000 } /* Generic.Inserted */
+div.example div.highlight .go { color: #808080 } /* Generic.Output */
+div.example div.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+div.example div.highlight .gs { font-weight: bold } /* Generic.Strong */
+div.example div.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+div.example div.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+div.example div.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+div.example div.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+div.example div.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+div.example div.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+div.example div.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+div.example div.highlight .kt { color: #B00040 } /* Keyword.Type */
+div.example div.highlight .m { color: #666666 } /* Literal.Number */
+div.example div.highlight .s { color: #BA2121 } /* Literal.String */
+div.example div.highlight .na { color: #7D9029 } /* Name.Attribute */
+div.example div.highlight .nb { color: #008000 } /* Name.Builtin */
+div.example div.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+div.example div.highlight .no { color: #880000 } /* Name.Constant */
+div.example div.highlight .nd { color: #AA22FF } /* Name.Decorator */
+div.example div.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+div.example div.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+div.example div.highlight .nf { color: #0000FF } /* Name.Function */
+div.example div.highlight .nl { color: #A0A000 } /* Name.Label */
+div.example div.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+div.example div.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+div.example div.highlight .nv { color: #19177C } /* Name.Variable */
+div.example div.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+div.example div.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+div.example div.highlight .mf { color: #666666 } /* Literal.Number.Float */
+div.example div.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+div.example div.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+div.example div.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+div.example div.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+div.example div.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+div.example div.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+div.example div.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+div.example div.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+div.example div.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+div.example div.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+div.example div.highlight .sx { color: #008000 } /* Literal.String.Other */
+div.example div.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+div.example div.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+div.example div.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+div.example div.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+div.example div.highlight .vc { color: #19177C } /* Name.Variable.Class */
+div.example div.highlight .vg { color: #19177C } /* Name.Variable.Global */
+div.example div.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+div.example div.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 div.example div.rendered {
   padding: 12px 8px;
   font-size: 14px;
@@ -55,6 +141,25 @@ div.example div.rendered table th {
 div.example div.rendered table th[colspan="2"] {
   min-height: 24px;
 }
+div.example div.rendered p label, div.example div.rendered li label {
+  display: inline-block;
+  min-width: 120px;
+}
+div.example div.rendered p textarea, div.example div.rendered li textarea {
+  vertical-align: top;
+}
+div.example div.rendered ul li {
+  list-style: none;
+  margin-left: 0;
+  margin-bottom: 4px;
+  padding-left: 5px;
+  border-left: 5px solid #999;
+}
+div.example div.rendered ul li ul li {
+  list-style: none;
+  margin-left: 35px;
+  border-left: 0;
+}
 div.example h3, div.example h4 {
   margin: 4px 0 2px 0;
   color: #234f32;
@@ -62,7 +167,7 @@ div.example h3, div.example h4 {
 div.example h4 {
   font-size: 18px;
 }
-div.example pre {
+div.example pre, pre.code {
   border-style: solid;
   border-width: 1px 0;
   overflow: auto;
