@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load examples_tags %}
+
+
+{% block title %}Customizing Rendering Templates{% endblock %}
+
+
+{% block content %}
+  <h3>Customizing Rendering Templates</h3>
+  <p>You can customize fieldset rendering by overriding <code>_tmpl_table</code>, <code>_tmpl_ul</code> and <code>_tmpl_p</code>. Template tuple's elements are listed below with the correct order:</p>
+
+  <ul>
+    <li><strong>fieldset_html</strong></li>
+    <li>title_html</li>
+    <li>description_html</li>
+    <li>normal_row</li>
+    <li>error_row</li>
+    <li>row_ender</li>
+    <li>help_text_html</li>
+    <li>errors_on_separate_row (boolean)</li>
+  </ul>
+
+  <p>As you can see it's the same with standard rendering parameters except the <code>fieldset_html</code>. In fact <code>django-formfieldset</code> is using the same values with <code>django.forms.Form</code> in other elements.</p>
+
+  <p>Following is an example of custom fieldset templates to render fieldsets as actual <code>FIELDSET</code> tags using the contact form from <a href="{% url example "simple" %}">simple example</a>. Note that we don't need enclosing <code>TABLE</code>s in the template code.</p>
+
+  {% example "templates" %}
+
+{% endblock content %}
