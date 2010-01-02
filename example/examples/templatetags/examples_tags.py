@@ -1,5 +1,6 @@
 import os
 from django import template
+from django.conf import settings
 from django.template.loader import find_template_source
 from django.template.loader import get_template_from_string
 from django.utils.html import escape
@@ -38,7 +39,8 @@ def get_template(example_name):
 def example(example_name):
     form, form_code = get_form(example_name)
     template_obj, template_code = get_template(example_name)
-    rendered = template_obj.render(template.Context({'form': form()}))
+    rendered = template_obj.render(template.Context({'form': form(),
+                                            'MEDIA_URL': settings.MEDIA_URL}))
     if highlight:
         formatter = HtmlFormatter()
         form_code = highlight(form_code, PythonLexer(), formatter)

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load examples_tags %}
+
+
+{% block title %}Rendering Individual Fieldsets{% endblock %}
+
+
+{% block content %}
+  <h3>Rendering Individual Fieldsets</h3>
+  <p>Like normal forms, you don't need to render fieldset-enabled forms all at once. If you need to render fieldsets individually you can access them one by one and call rendering functions <code>as_table</code>, <code>as_ul</code> and <code>as_p</code> on them.</p>
+
+  <p>You can iterate over fieldsets with <code>iter_fieldsets</code> or use dictionary access with <code>fieldset_dict</code>. Keys for the dictionary <code>fieldset_dict</code> returns will be slugified fieldset titles. Slugify function is the same as Django default template filter <code><a href="http://docs.djangoproject.com/en/dev/ref/templates/builtins/#slugify">slugify</a></code>, <strong>except space characters will be replaced with underscores instead of hyphens</strong>.</p>
+
+  {% example "individual" %}
+
+  <p><strong>WARNING:</strong> when rendering fieldsets individually errors raised from hidden fields <strong>will</strong> render within the fieldset. But you still need to call <code>non_field_errors</code> somewhere in your template to get the top level errors. It is up to you to format and display these. This is just when you render fieldsets individually, <code>as_fieldset_table</code>, <code>as_fieldset_ul</code> and <code>as_fieldset_p</code> takes care of top level errors.</p>
+{% endblock content %}
