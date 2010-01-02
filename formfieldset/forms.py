@@ -1,3 +1,5 @@
+import re
+import unicodedata
 from django import forms as django_forms
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -6,6 +8,15 @@ from django.utils.encoding import force_unicode
 
 class FieldsetError(ValueError):
     pass
+
+
+def slugify(value):
+    # stolen from django.template.defaultfilters.slugify
+    # only difference is this functions is substituting
+    # spaces with underscores instead of hyphens
+    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
+    value = unicode(re.sub('[^\w\s-]', '', value).strip().lower())
+    return re.sub('[-\s]+', '_', value)
 
 
 class Fieldset(object):
@@ -100,11 +111,11 @@ class Fieldset(object):
                                                             self.description))
         else:
             description = u''
-        if top_errors_on_fieldset:
+        if top_errors_on_fieldset and top_errors:
             output.insert(0, error_row % force_unicode(top_errors))
-        return fieldset_html % {'title': title,
-                                'description': description,
-                                'fields': u'\n'.join(output)}
+        return mark_safe(fieldset_html % {'title': title,
+                                          'description': description,
+                                          'fields': u'\n'.join(output)})
 
     def as_table(self):
         "Returns this fieldset's fields rendered as HTML <tr>s -- " \
@@ -188,7 +199,8 @@ class FieldsetMixin(object):
         # No need to call validate_fieldsets() since we
         # are using iter_fieldsets.
         if not hasattr(self, '__fieldset_dict'):
-            self.__fieldset_dict = dict((fset.title, fset) for fset in self.iter_fieldsets())
+            self.__fieldset_dict = dict((slugify(fset.title), fset) for \
+                                                fset in self.iter_fieldsets())
         return self.__fieldset_dict
 
     def _html_fieldset_output(self,
