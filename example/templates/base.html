@@ -36,8 +36,12 @@
             <h3>Pages</h3>
             <ul>
               <li><a href="{% url homepage %}">Home</a></li>
+              <li><a href="{% url example "simple" %}">A Simple Example</a></li>
+              <li><a href="{% url example "definition" %}">Fieldset Definitions</a></li>
+              <li><a href="{% url example "rendering" %}">Fieldset Rendering</a></li>
+              <li><a href="{% url example "templates" %}">Customizing Rendering Templates</a></li>
+              <li><a href="{% url example "individual" %}">Rendering Individual Fieldsets</a></li>
             </ul>
-            <p>Test</p>
           {% endblock sidepanel %}</div>
         </div>
       </div>
