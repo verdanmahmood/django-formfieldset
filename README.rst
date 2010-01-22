@@ -26,7 +26,7 @@ Installation
 Testing & Example
 =================
 
-There is an example project in the ``example/`` folder. To run
+There is an example project in the ``example/`` directory. To run
 automated tests for django-formfieldset run the following command
 in ``example/`` directory:
 
@@ -41,6 +41,8 @@ To run the example project:
     python manage.py runserver
 
 Then you can visit ``http://localhost:8000/`` to view the example.
+
+Code examples will be highlighted if you have ``pygments`` installed.
 
 
 Usage
