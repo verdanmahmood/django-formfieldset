@@ -32,15 +32,16 @@ in ``example/`` directory:
 
 ::
 
-    python manage.py test formfieldset
+    python example/manage.py test formfieldset
 
 To run the example project:
 
 ::
 
-    python manage.py runserver
+    python example/manage.py runserver
 
 Then you can visit ``http://localhost:8000/`` to view the example.
+**Example project also serves as detailed documentation for formfieldset**.
 
 Code examples will be highlighted if you have ``pygments`` installed.
 
