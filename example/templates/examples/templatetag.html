@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load examples_tags %}
+
+
+{% block title %}Rendering With Template Tags{% endblock %}
+
+
+{% block content %}
+  <h3>Rendering With Template Tags</h3>
+  <p>You can use <code>renderform</code> template filter on a form to render it. By default your form (or fieldset) will be rendered using <code>formfieldset/form.html</code> template. But you can supply your custom template as an argument to <code>renderform</code> like this <code>{% templatetag openvariable %} form|renderform:"myapp/custom_form.html" {% templatetag closevariable %}</code>.</p>
+
+  {% example "templatetag" %}
+
+{% endblock content %}

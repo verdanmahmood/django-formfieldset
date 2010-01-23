@@ -21,8 +21,10 @@
     <div id="page">
       <div id="header">
         <div id="links"><a href="http://github.com/muhuk/django-formfieldset">Official Homepage</a></div>
-        <h1>django-formfieldset</h1>
-        <h2>Example Application</h2>
+        <a href="{% url homepage %}">
+          <h1>django-formfieldset</h1>
+          <h2>Example Application</h2>
+        </a>
       </div>
 
       <div id="page_main">
@@ -41,6 +43,7 @@
               <li><a href="{% url example "rendering" %}">Fieldset Rendering</a></li>
               <li><a href="{% url example "templates" %}">Customizing Rendering Templates</a></li>
               <li><a href="{% url example "individual" %}">Rendering Individual Fieldsets</a></li>
+              <li><a href="{% url example "templatetag" %}">Rendering With Template Tags</a></li>
             </ul>
           {% endblock sidepanel %}</div>
         </div>
