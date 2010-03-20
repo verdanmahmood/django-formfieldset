@@ -66,7 +66,7 @@ Usage
 Tutorials & How-to's
 ====================
 
-- `What’s New in django-formfieldset 1.1 <http://www.muhuk.com/2010/03/whats-new-in-django-formfieldset-1-1/>`_
+- `What's New in django-formfieldset 1.1 <http://www.muhuk.com/2010/03/whats-new-in-django-formfieldset-1-1/>`_
 
 
 See Also
