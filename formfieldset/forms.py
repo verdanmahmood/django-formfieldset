@@ -195,6 +195,7 @@ class FieldsetMixin(object):
         for title, options in self.fieldsets:
             yield Fieldset(self, title, **options)
 
+    @property
     def fieldset_dict(self):
         # No need to call validate_fieldsets() since we
         # are using iter_fieldsets.
