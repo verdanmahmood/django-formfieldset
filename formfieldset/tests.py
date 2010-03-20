@@ -63,8 +63,8 @@ class FieldsetAccessTestCase(TestCase):
     def test_fieldset_dict(self):
         fset_dict = self.base_form().fieldset_dict()
         self.assertEqual(len(fset_dict), 2)
-        self.assertEqual('Fieldset1' in fset_dict.keys(), True)
-        self.assertEqual('Fieldset2' in fset_dict.keys(), True)
+        self.assertEqual('fieldset1' in fset_dict.keys(), True)
+        self.assertEqual('fieldset2' in fset_dict.keys(), True)
 
 
 class FieldsetRenderTestCase(TestCase):
@@ -128,8 +128,8 @@ class FieldsetRenderTestCase(TestCase):
     def test_individual_fieldset_render(self):
         form = self.test_form(data={'test_field2': u'Test Value',
                                     'test_field4': u'Test Value'})
-        fieldset1 = form.fieldset_dict()['Fieldset1']
-        fieldset2 = form.fieldset_dict()['Fieldset2']
+        fieldset1 = form.fieldset_dict()['fieldset1']
+        fieldset2 = form.fieldset_dict()['fieldset2']
         self.assertEqual(form.is_valid(), False)
         for method in ('as_table', 'as_ul', 'as_p'):
             rendered1 = getattr(fieldset1, method)()
