@@ -80,7 +80,7 @@ class FieldsetRenderTestCase(TestCase):
 
             fieldsets = (
                 (u'Fieldset1', {
-                    'description': u'Test Description',
+                    'description': u'Test Description<sup>1</sup>',
                     'fields': ('test_field1',),
                 }),
                 (u'Fieldset2', {
@@ -125,7 +125,7 @@ class FieldsetRenderTestCase(TestCase):
             # Check for fieldset titles & decriptions
             self.assertTrue(u'Fieldset1' in rendered)
             self.assertTrue(u'Fieldset2' in rendered)
-            self.assertTrue(u'Test Description' in rendered)
+            self.assertTrue(u'Test Description<sup>1</sup>' in rendered)
 
     def test_individual_fieldset_render(self):
         form = self.test_form(data={'test_field2': u'Test Value',

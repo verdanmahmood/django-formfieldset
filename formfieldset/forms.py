@@ -107,8 +107,7 @@ class Fieldset(object):
         else:
             title = u''
         if self.description:
-            description = description_html % escape(force_unicode(
-                                                            self.description))
+            description = description_html % force_unicode(self.description)
         else:
             description = u''
         if top_errors_on_fieldset and top_errors:
@@ -136,7 +135,7 @@ class FieldsetMixin(object):
     _tmpl_table = (
         u'<tr><th colspan="2">%(title)s%(description)s</th></tr>%(fields)s',
         u'<h2>%s</h2>',
-        u'%s',
+        u'<div class="description">%s</div>',
         u'<tr><th>%(label)s</th><td>%(errors)s' \
                                           u'%(field)s%(help_text)s</td></tr>',
         u'<tr><td colspan="2">%s</td></tr>',
@@ -147,7 +146,7 @@ class FieldsetMixin(object):
     _tmpl_ul = (
         u'<li>%(title)s%(description)s<ul>%(fields)s</ul></li>',
         u'<h2>%s</h2>',
-        u'%s',
+        u'<div class="description">%s</div>',
         u'<li>%(errors)s%(label)s %(field)s%(help_text)s</li>',
         u'<li>%s</li>',
         u'</li>',
@@ -157,7 +156,7 @@ class FieldsetMixin(object):
     _tmpl_p = (
         u'<div>%(title)s%(description)s%(fields)s</div>',
         u'<h2>%s</h2>',
-        u'%s',
+        u'<div class="description">%s</div>',
         u'<p>%(label)s %(field)s%(help_text)s</p>',
         u'%s',
         u'</p>',
