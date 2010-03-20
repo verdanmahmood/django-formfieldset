@@ -11,7 +11,7 @@ Features
   - render as ``TABLE``
   - render as ``UL``
 
-- Templates are class variables
+- Template strings are class attributes
 - Overrides nothing in ``django.forms.Form``
 
 
@@ -61,6 +61,12 @@ Usage
    -  You can use ``as_fieldset_table()``, ``as_fieldset_ul()`` and
       ``as_fieldset_p()`` methods that act like built-in ``as_*`` method
       except fieldset support.
+
+
+Tutorials & How-to's
+====================
+
+- `What’s New in django-formfieldset 1.1 <http://www.muhuk.com/2010/03/whats-new-in-django-formfieldset-1-1/>`_
 
 
 See Also
