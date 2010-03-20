@@ -2,12 +2,14 @@
 {% load examples_tags %}
 
 
-{% block title %}Rendering With Template Tags{% endblock %}
+{% block title %}Rendering With A Custom Template{% endblock %}
 
 
 {% block content %}
-  <h3>Rendering With Template Tags</h3>
-  <p>You can use <code>renderform</code> template filter on a form to render it. By default your form (or fieldset) will be rendered using <code>formfieldset/form.html</code> template. But you can supply your custom template as an argument to <code>renderform</code> like this <code>{% templatetag openvariable %} form|renderform:"myapp/custom_form.html" {% templatetag closevariable %}</code>.</p>
+  <h3>Rendering With A Custom Template</h3>
+  <p>You can use <code>renderform</code> template filter on a form or a <code>Fieldset</code> object to render it. By default <code>formfieldset/form.html</code> template will be used. You can also supply another template name as an argument to <code>renderform</code> like this <code>{% templatetag openvariable %} form|renderform:"myapp/custom_form.html" {% templatetag closevariable %}</code>.</p>
+
+  <p><code>Django-formfieldset</code> supplies a simple <code>formfieldset/form.html</code> template. But this filter is most useful when you override this default template or use a custom template as a filter argument.</p>
 
   {% example "templatetag" %}
 
