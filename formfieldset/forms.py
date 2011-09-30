@@ -167,7 +167,7 @@ class FieldsetMixin(object):
     def _validate_fieldsets(self):
         valid = False
         fields_defined = sum((fset[1]['fields'] for fset in self.fieldsets),
-                             ())
+                             [])
         fields_set = set(fields_defined)
         # Fieldsets are valid if:
         #  * Each field is defined in a Fieldset
