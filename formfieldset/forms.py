@@ -1,6 +1,6 @@
 import re
 import unicodedata
-from django import forms as django_forms
+from django import forms
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
@@ -33,7 +33,7 @@ class Fieldset(object):
     def __iter__(self):
         "Iterates through fields in the fieldset."
         for field in self.fields:
-            yield django_forms.forms.BoundField(self.form,
+            yield forms.forms.BoundField(self.form,
                                                 self.form.fields[field],
                                                 field)
 
@@ -47,7 +47,7 @@ class Fieldset(object):
                      help_text_html,
                      errors_on_separate_row,
                      top_errors=None,
-                     error_class=django_forms.util.ErrorList,
+                     error_class=forms.utils.ErrorList,
                      label_suffix=u':'):
         output, hidden_fields = [], []
         # top_errors is not supplied when the
@@ -167,7 +167,7 @@ class FieldsetMixin(object):
     def _validate_fieldsets(self):
         valid = False
         fields_defined = sum((fset[1]['fields'] for fset in self.fieldsets),
-                             [])
+                             ())
         fields_set = set(fields_defined)
         # Fieldsets are valid if:
         #  * Each field is defined in a Fieldset
